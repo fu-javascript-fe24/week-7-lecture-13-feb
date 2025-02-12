@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <!-- Metadata for language settings, character encoding, responsive design, and page title -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planned Planthood - Mypage</title>
+    <link rel="stylesheet" href="./styles/style.css" />
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Navigation menu -->
+      <nav class="navigation">
+        <ul class="navigation-list">
+          <li class="navigation-links">
+            <a href="./index.html">HOME</a>
+          </li>
+          <li class="navigation-links">
+            <a href="./index.html">HISTORIK</a>
+          </li>
+          <li class="navigation-links">
+            <a href="./pages/contact.html">KONTAKT</a>
+          </li>
+          <li class="navigation-links" id="logoutBtn">
+            <a href="./index.html">LOGGA UT</a>
+          </li>
+        </ul>
+      </nav>
+      <!-- Page header -->
+      <header class="header-mypages">
+        <!-- Hamburger menu for mobile navigation -->
+        <input type="checkbox" class="burger" id="burger" />
+        <label class="burger-btn" for="burger">
+          <span class="line-01"></span>
+        </label>
+        <figure>
+          <img
+            src="../assets/plannedplanthoodlogo.svg"
+            alt="planned planthood logo"
+          />
+        </figure>
+        <h1 class="h1-mypages">Mina sidor</h1>
+      </header>
+      <main>
+        <h2 class="h2-mypages">Lägg till ny plantering:</h2>
+        <form class="add-plant-form" id="addPlantForm">
+          <label class="label-form" for="plant-name"
+            >Planta:
+            <input type="text" name="plant-name" id="plant-name" />
+          </label>
+          <label class="label-form" for="plant-date"
+            >Datum:<input type="date" name="plant-date" id="plant-date"
+          /></label>
+          <label class="label-form" for="plant-user"
+            >Vem:
+            <input type="text" id="plant-user" disabled />
+          </label>
+          <label class="label-form" for="plant-link"
+            >Foto:
+            <input type="text" id="plant-link" />
+          </label>
+          <button class="button">LÄGG TILL</button>
+        </form>
+
+        <!-- Section to display planned plantings -->
+        <h3>Dina planerade planteringar:</h3>
+        <section
+          class="planned-plants plant-card-section"
+          id="myPlannedPlants"
+        ></section>
+
+        <!-- Section for planted plantings -->
+        <h3>Dina planterade planteringar:</h3>
+        <section
+          class="planted-plants plant-card-section"
+          id="myPlantedPlants"
+        ></section>
+      </main>
+      <!-- Footer section -->
+      <footer class="footer-mypages background-color-complementary">
+        <section>
+          <figure class="footer-mypages-img-1"></figure>
+          <figure class="footer-mypages-img-2"></figure>
+        </section>
+        <section>
+          <figure class="footer-mypages-img-3"></figure>
+          <figure class="footer-mypages-img-4"></figure>
+        </section>
+      </footer>
+      <!-- Back to top link -->
+      <a class="back-to-top-link" href="#">Till toppen av sidan</a>
+    </div>
+  </body>
+</html>

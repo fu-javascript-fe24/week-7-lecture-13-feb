@@ -1,0 +1,818 @@
+/*
+
+File name: style.css
+Description: Main stylesheet for the website layout and design.
+Author: Filip Jernberg, David Åkerlind, Emund Liljestrand. 
+Created: 2024-11-11
+Last updated: 2024-11-14
+Version: 1.0
+
+    1. Font import
+    2. Reset / Normalize
+    3. Variables
+
+    4. Basic styling
+
+    1.1 Header Component
+    1.2 Burger Menu
+    1.3 Navigation Bar
+    1.4 Main Content
+    1.5 Plant Card Section
+    1.6 Footer Section - (used on all pages)
+    1.7 Back to top Bar
+
+    2.1. My Page Styling
+    2.2. Header Component - My Pages
+    2.3. Form - My Pages 
+    2.4. Planed Plants Grid - My pages
+    2.5 Footer section - Mypages
+
+    3.1 Media Queries
+    3.2 Media Queries Standard
+    3.3 Media Queries - My Pages
+
+    
+
+*/
+
+/* ==== Font import ====*/
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+/* ==== Reset and Normalize ==== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==== Variables ==== */
+:root {
+    --primary-color: #0a846e; /* Elf Green - Primary Color for backgrounds and main buttons. */
+    --complementary-color: #9e6d52; /* Leather - Complementary Color for backgrounds. */
+    --warning-color: #b93857; /* Night Shadz - Warning Color for text and color for NO-buttons. */
+    --background-margin-color: #fcf6fc; /* Amour - Background Margin Color. */
+    --background-color: #ffffff; /* White - Background Color. */
+    --dark-text-color: #1e1e1e; /* Cod Gray - Dark Text Color. */
+    --light-text-color: #ffffff; /* White - Light Text Color against dark background. */
+
+    --text-maven-pro: Maven Pro, sans-serif; /* Maven Pro font, weight 500 */
+
+    --text-open-sans: Open Sans, sans-serif; /* Open Sans font, weight 700 */
+
+    --text-lato: Lato, sans-serif; /* Lato font, weight 600 */
+}
+
+/* ==== Basic styling ==== */
+body {
+    background-color: var(--background-margin-color);
+    color: var(--dark-text-color);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1180px;
+    margin-inline: auto;
+    background-color: var(--background-color);
+    box-shadow: 0 2px 2px 0 #03382f1c;
+    margin-bottom: 2rem;
+}
+
+.background-color-primary {
+    background-color: var(--primary-color);
+}
+
+.background-color-complementary {
+    background-color: var(--complementary-color);
+}
+
+h1 {
+    font-family: var(--text-maven-pro);
+    font-weight: 500;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+h2 {
+    font-family: var(--text-open-sans);
+}
+
+h3 {
+    font-family: var(--text-lato);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+p {
+    font-family: var(--text-open-sans);
+}
+
+hr {
+    height: 3px;
+    margin: 5rem 0;
+    width: 40%;
+    background-color: #055647;
+    border-radius: 999rem;
+    border: none;
+}
+
+.button {
+    align-self: flex-end;
+    border: none;
+    color: var(--light-text-color);
+    background-color: var(--primary-color);
+    padding: 1rem 3rem;
+    box-shadow: 0 5px 6px 1px #0000001c;
+    font-family: var(--text-open-sans);
+    font-weight: 700;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.button:hover {
+    transform: scale(0.95); /* makes the button 5% smaller */
+}
+
+/* ==== Header Component ==== */
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    /* grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); */
+    width: 100%;
+}
+
+.header-figure-container:nth-child(1) {
+    background-image: url("https://images.unsplash.com/photo-1615671524701-9c3dde8fdaa0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-row: 1 / span 2;
+}
+
+.header-figure-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-column: span 1;
+    /* grid-column: span 2;
+    aspect-ratio: 1 / 1; */
+}
+.header-figure-container > img {
+    padding: 2rem;
+    max-height: 250px;
+
+    filter: drop-shadow(2px 2px 2px rgba(19, 19, 19, 0.5));
+}
+
+/*  ==== Burger Menu ==== */
+.burger {
+    display: none;
+}
+
+.burger-btn {
+    padding: 2rem;
+    width: 7rem;
+    aspect-ratio: 1;
+    position: fixed;
+    top: 0rem;
+    right: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    cursor: pointer;
+    display: none;
+}
+
+.burger-btn span {
+    border-radius: 10px;
+    width: 100%;
+    height: 4px;
+    background-color: #fff;
+    box-shadow: 1px 2px 2px 1px rgba(19, 19, 19, 0.4);
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+.burger-btn span::before,
+.burger-btn span::after {
+    border-radius: 10px;
+    background-color: #fff;
+    width: 100%;
+    height: 4px;
+    box-shadow: 1px 2px 2px 1px rgba(19, 19, 19, 0.4);
+    content: "";
+    position: absolute;
+    transition: all .3s ease-in-out;
+}
+
+.burger-btn span::before {
+    top: -16px;
+}
+
+.burger-btn span::after {
+    top: 16px;
+}
+
+.burger-btn.open > span {
+    transform: rotate(45deg);
+}
+
+.burger-btn.open > span::before {
+    transform: rotate(0);
+    top: 0;
+}
+
+.burger-btn.open > span::after {
+    transform: rotate(90deg);
+    top: 0;
+}
+
+/* ==== Navigation Bar ==== */
+
+.navigation {
+    width: 100%;
+    position: sticky;
+    background-color: var(--background-color);
+    top: 0;
+    z-index: 999;
+}
+
+.navigation-list {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 1rem;
+    list-style: none;
+    box-shadow: 0 4px 4px 0 #03382f1c;
+}
+
+.navigation-links > a {
+    padding: calc(1rem - 2px) 1.5rem;
+    text-decoration: none;
+    font-family: var(--text-maven-pro);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.1rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid transparent; /* transparent border for animation*/
+    transition: all 0.15s ease-in-out; /* animation for the border */
+}
+
+.navigation-links > a:hover {
+    border-bottom: 2px solid var(--primary-color);
+    transform: translateY(-2px) scale(1.05); /* animation for the border*/
+}
+
+/* ==== Main Content ==== */
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.main-article-section {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+}
+
+.main-figure-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999rem;
+    min-width: 30%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.main-figure-container > img {
+    padding: 25%;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.sowing-tips {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    min-width: 20ch;
+}
+
+.sowing-tips > h2 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.sowing-tips p,
+.previous-plants p {
+    font-weight: 400;
+    padding-bottom: 1rem;
+}
+
+/* Button is styled in "basic - styling" -part of code */
+
+/* hr is styled in "basic - styling" -part of code */
+
+/* h3 is styled in "basic - styling" -part of code */
+
+/* ==== Plant Card Section Grid ==== */
+
+.plant-card-section {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.plant-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 400px;
+    box-shadow: 3px 4px 4px 0 #03382f1c;
+}
+
+.plant-card-container {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0rem;
+}
+
+.aside-card-top,
+.aside-card-bot {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.plant-card-name {
+    font-family: var(--text-lato);
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 1rem 0rem 1rem 1rem;
+}
+
+.plant-card-date {
+    text-align: right;
+    font-family: var(--text-open-sans);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 1rem 1rem 1rem 0rem;
+}
+
+.plant-card-planter {
+    font-family: var(--text-lato);
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 1rem 0rem 1rem 1rem;
+}
+
+.plant-card-button {
+    background-color: var(--warning-color);
+    font-size: 0.8rem;
+    padding: 0.3rem 0.9rem;
+    margin: 0.8rem 0.8rem 0.8rem 0rem;
+}
+
+.plant-card-button img {
+    display: none;
+}
+
+/* ==== Card Image ==== */
+.figure-cucumber {
+    background-image: url("https://images.unsplash.com/photo-1518568403628-df55701ade9e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.figure-tomato-1 {
+    background-image: url("https://images.unsplash.com/photo-1596199050105-6d5d32222916?q=80&w=2639&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.figure-tomato-2 {
+    background-image: url("https://images.unsplash.com/photo-1565698228480-eec300c9679b?q=80&w=2806&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+.figure-sugarcane {
+    background-image: url("https://images.unsplash.com/photo-1687878269804-63e8b50e3ddc?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+.figure-turnip {
+    background-image: url("https://images.unsplash.com/photo-1555447740-03e40562af94?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+.figure-squash {
+    background-image: url("https://images.unsplash.com/photo-1627989230968-d0b8e2d1a398?q=80&w=2962&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.show-more-button {
+    font-weight: 600;
+    align-self: center;
+    margin: 4rem;
+}
+
+.previous-plants {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    min-width: 20ch;
+}
+
+.previous-plants-button {
+    align-self: flex-start;
+}
+
+/* ==== Footer Section =====*/
+
+.footer-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    background-image: url("https://images.unsplash.com/photo-1586281010691-f9da4be5b1f7?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 30rem;
+    margin-top: 4rem;
+}
+
+.contact-info {
+    background-color: rgba(17, 17, 17, 0.8);
+    color: var(--light-text-color);
+    font-family: var(--text-maven-pro);
+    position: relative;
+}
+
+.footer-title {
+    min-width: 8ch;
+    font-size: 4rem;
+    font-weight: 500;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.footer-links {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1.2rem;
+    position: absolute;
+    padding: 1rem;
+}
+
+.link-left {
+    bottom: 0;
+}
+
+.link-right {
+    bottom: 0;
+    right: 0;
+}
+
+.footer-figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==== Back To Top Link ===== */
+
+.back-to-top-link {
+    width: 100%;
+    text-align: center;
+    color: var(--dark-text-color);
+    text-decoration: none;
+    font-family: var(--text-open-sans);
+    font-weight: 500;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 4px 0#03382f1c;
+    padding: 1.5rem;
+}
+
+/* ==================================================*/
+/* ================= My Page Styling  ===============*/
+/* ==================================================*/
+
+/* We have styled som things the same like: 
+- .button
+- .plant-card-section 
+- .navigation 
+
+And inherited som basic styling
+- h2
+- p
+*/
+
+/* ==== Header Component - My Pages ==== */
+.header-mypages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25rem;
+    background-image: url("https://images.unsplash.com/photo-1586281010691-f9da4be5b1f7?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.h1-mypages {
+    color: var(--light-text-color);
+}
+
+.h2-mypages {
+    font-family: var(--text-open-sans);
+    font-weight: 400;
+    font-size: 2rem;
+    align-self: flex-start;
+    margin-top: 1rem;
+}
+
+/* ==== Form - My Pages ==== */
+
+.add-plant-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.label-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 48%;
+    font-family: var(--text-open-sans);
+    font-weight: 400;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+}
+
+input {
+    border: none;
+    box-shadow: 0 4px 4px 1.5px#03382f1c;
+    padding: 0.7rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+/* ==== Planed Plants Grid - My pages ===== */
+
+.planted-plants,
+.planned-plants {
+    justify-content: flex-start;
+    margin-bottom: 5rem;
+}
+
+.planned-plants > article {
+    justify-self: flex-start;
+}
+
+.planted-plants > article {
+    justify-self: flex-start;
+}
+
+/* ==== Footer Section - My Pages ==== */
+.footer-mypages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 100%;
+    min-height: 300px;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+.footer-mypages section {
+    grid-column: span 1;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.footer-mypages figure {
+    opacity: 0.7;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.footer-mypages-img-1 {
+    background-image: url("https://plus.unsplash.com/premium_photo-1678344170545-c3edef92a16e?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.footer-mypages-img-2 {
+    background-image: url("https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.footer-mypages-img-3 {
+    background-image: url("https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=2500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.footer-mypages-img-4 {
+    background-image: url("https://plus.unsplash.com/premium_photo-1681398651047-78491e34f66a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.d-none {
+    display: none;
+}
+
+/* ==================================================*/
+/* ================= Media Queries  =================*/
+/* ==================================================*/
+
+@media screen and (max-width: 600px) {
+    /* ==== Media Queries Standard ==== */
+
+    main {
+        padding: 1rem;
+    }
+
+    .header-container {
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .burger-btn {
+        display: flex;
+    }
+
+    .header-figure-container > img {
+        max-height: 185px;
+    }
+
+    .header-figure-container:nth-child(1) > img {
+        max-height: 300px;
+    }
+
+    .header-figure-container:nth-child(1) {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
+    }
+
+    .navigation {
+        width: 80vw;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        transition: all .3s ease-in-out;
+        z-index: 100;
+    }
+
+    .navigation > ul {
+        flex-direction: column;
+    }
+
+    .navigation > ul > li {
+        width: 100%;
+        padding: 1rem 2rem;
+        display: inline-block;
+    }
+
+    .navigation.open {
+        right: 0;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-article-section {
+        display: flex;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .button {
+        align-self: center;
+        font-size: 1rem;
+        padding: 0.5rem 1.5rem;
+    }
+
+    .sowing-tips > h2 {
+        font-size: 1.2rem;
+    }
+
+    .main-figure-container {
+        margin-inline: 2.2rem;
+    }
+
+    hr {
+        width: 60%;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .plant-card-section {
+        margin-top: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .plant-card-name {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .plant-card-date {
+        font-size: 0.6rem;
+        padding: 0.5rem;
+    }
+
+    .plant-card-planter {
+        font-size: 0.8rem;
+        min-width: 8ch;
+        padding: 0.5rem;
+    }
+    .plant-card-button {
+        background: none;
+        box-shadow: none;
+        padding: 0rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .plant-card-button span {
+        display: none;
+    }
+
+    .plant-card-button img {
+        display: block;
+    }
+
+    .plant-card-container > img {
+        max-height: 7rem;
+    }
+
+    .show-more-button {
+        margin-bottom: 0;
+    }
+
+    .contact-info,
+    .footer-figure {
+        aspect-ratio: 1;
+    }
+
+    .contact-info {
+        grid-area: info;
+    }
+
+    .footer-figure {
+        grid-area: figure;
+    }
+
+    .footer-section {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas: "figure" "info";
+    }
+
+    /* ==== Media Queries - My Pages ==== */
+
+    .h2-mypages {
+        margin-top: 0;
+        padding-bottom: 1rem;
+
+        align-self: center;
+        font-size: 1.8rem;
+    }
+
+    .add-plant-form {
+        gap: 0.5rem;
+    }
+
+    .label-form {
+        width: 100%;
+        margin-top: 0;
+        font-size: 1rem;
+    }
+
+    .planned-plants {
+        margin-bottom: 3rem;
+    }
+    .planted-plants {
+        margin-bottom: 1rem;
+    }
+}
